@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace AskFood.ViewModel
 {
-    public class UserDirectoryVM : ObservableBaseObject
+    public class UserViewModel : ObservableBaseObject
     {
         public ObservableCollection<User> Users { get; set; }
 
@@ -24,7 +24,7 @@ namespace AskFood.ViewModel
 
         public Command LoadDirectoryCommand { get; set; }
 
-        public UserDirectoryVM()
+        public UserViewModel()
         {
             Users = new ObservableCollection<User>();
             IsBusy = false;

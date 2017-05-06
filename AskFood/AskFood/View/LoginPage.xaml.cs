@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-namespace AskFood
+namespace AskFood.View
 {
     public partial class LoginPage : ContentPage
     {

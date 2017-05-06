@@ -4,16 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace AskFood
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace AskFood.View
 {
     public partial class MainPage : ContentPage
     {
         public MainPage()
         {
             InitializeComponent();
-            this.BindingContext = new UserDirectoryVM();
+            this.BindingContext = new UserViewModel();
         }
     }
 }
