@@ -13,7 +13,7 @@ namespace AskFood
         {
             InitializeComponent();
 
-            MainPage = new AskFood.MainPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

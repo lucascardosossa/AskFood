@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AskFood"
+             x:Class="AskFood.MainPage"
+             Title="Chegou PIZZA">
+
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Padding="5,0,0,0">
+            <Label Text="Welcome to Xamarin Forms!"  />
+            <!--<Entry/>-->
+            <Button Text="Carregar" Command="{Binding LoadDirectoryCommand}" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            <ListView ItemsSource="{Binding Users}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell TextColor="Black" Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ScrollView>
+
+	
+
+</ContentPage>
