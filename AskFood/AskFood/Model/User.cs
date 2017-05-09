@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AskFood.Model
+﻿namespace AskFood.Model
 {
-    public class User : ObservableBaseObject
+    public class User : BaseViewModel
     {
         private string name;
         public string Name

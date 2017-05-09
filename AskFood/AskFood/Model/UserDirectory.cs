@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AskFood.Model
 {
-    public class UserDirectory : ObservableBaseObject
+    public class UserDirectory : BaseViewModel
     {
         private ObservableCollection<User> user = new ObservableCollection<User>();
 

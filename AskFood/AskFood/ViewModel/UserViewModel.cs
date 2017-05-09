@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace AskFood.ViewModel
 {
-    public class UserViewModel : ObservableBaseObject
+    public class UserViewModel : BaseViewModel
     {
         public ObservableCollection<User> Users { get; set; }
 
@@ -47,11 +47,11 @@ namespace AskFood.ViewModel
                     if (resposta) {
                         var repository = new RestClient();
                         var loadedDirectory = await repository.GetUser("user");
-                        Users.Clear();
-                        foreach (var user in loadedDirectory)
-                        {
-                            Users.Add(user);
-                        }
+                        //Users.Clear();
+                        //foreach (var user in loadedDirectory)
+                        //{
+                        //    Users.Add(user);
+                        //}
                     }
                     else
                     {

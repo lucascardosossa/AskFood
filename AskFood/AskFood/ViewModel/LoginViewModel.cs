@@ -1,4 +1,5 @@
 ﻿using AskFood.Model;
+using AskFood.Services;
 using AskFood.View;
 using System;
 using System.Collections.ObjectModel;
@@ -6,7 +7,7 @@ using Xamarin.Forms;
 
 namespace AskFood.ViewModel
 {
-    public class LoginViewModel: ObservableBaseObject
+    public class LoginViewModel: BaseViewModel
     {
         
         public ObservableCollection<User> Users { get; set; }
@@ -44,24 +45,23 @@ namespace AskFood.ViewModel
                 try
                 {
                     
-                    bool resposta = await App.Current.MainPage.DisplayAlert("Confirmar", "Voce realmente deseja carregar os itens?", "sim", "não");
-
-                    if (resposta)
-                    {
-                    //var repository = new RestClient();
-                    //var loadedDirectory = await repository.GetUser();
-                    //Users.Clear();
-                    //foreach (var user in loadedDirectory)
-                    //{
-                    //    Users.Add(user);
-                    //}
-                    //await App.Current.MainPage.DisplayAlert("Alerta", $"Usuário: {_username}, Senha: {_password}", "ok");
-                    await App.Current.MainPage.Navigation.PushAsync(new MainPage());
-                }
-                    else
-                    {
-                        await App.Current.MainPage.DisplayAlert("Alerta", "Tudo bem.", "ok");
-                    }
+                    
+                        User userCredentials = new User();
+                        userCredentials.Name = _username;
+                        userCredentials.Password = _password;
+                        
+                        var repository = new RestClient();
+                        var logged = await repository.LoginUser("user/login", userCredentials);
+                        if(logged == "OK")
+                        {
+                            //var repository = new RestClient();
+                            // var user = await repository.GetUser("user");
+                            //var products = await repository.GetProduct("product");
+                            await PushAsync<ProductViewModel>();
+                        }
+                            
+                        else
+                            await App.Current.MainPage.DisplayAlert("Alerta", "Credenciais incorretas.", "ok");
 
                 }
                 catch (Exception ex)
