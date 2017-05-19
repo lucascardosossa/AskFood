@@ -2,19 +2,19 @@
 {
     public class User : BaseViewModel
     {
-        private string name;
-        public string Name
+        private string _name;
+        public string name
         {
-            get { return name; }
-            set { SetProperty(ref name, value); }
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
         }
 
-        private string password;
+        private string _password;
 
-        public string Password
+        public string password
         {
-            get { return password; }
-            set { SetProperty(ref password, value); }
+            get { return _password; }
+            set { SetProperty(ref _password, value); }
         }
 
 

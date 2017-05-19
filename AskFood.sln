@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskFood.Android", "AskFood\AskFood.Android\AskFood.Android.csproj", "{2CDEAF27-39A5-4E5B-8B93-1FB1B93C4819}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "askFood.Android", "AskFood\AskFood.Android\askFood.Android.csproj", "{2CDEAF27-39A5-4E5B-8B93-1FB1B93C4819}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskFood", "AskFood\AskFood\AskFood.csproj", "{340A31F7-D4EA-4598-B5C9-9D8326896C0A}"
 EndProject

@@ -14,6 +14,13 @@
             <Entry x:Name="passwordEntry" Text="{Binding Password}" IsPassword="true" />
             <Button Text="Login" Command="{Binding Signin}" />
             <Label x:Name="messageLabel" />
+
+            <!--Social Login-->
+            <Button Command="{Binding LoginCommand}"
+                Text="Logar com Facebook"
+                    BackgroundColor="Blue"
+                    FontSize="Medium"
+                    TextColor="White"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿using AskFood.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -11,7 +12,7 @@ namespace AskFood.Services
 {
     public class RestClient : IRestClient
     {
-        string URLWebAPI = "http://10.0.2.2:300/";
+        string URLWebAPI = "http://lcslabs.com.br:300/askfood/";
 
         public async Task<List<User>> GetUser(string endpoint)
         {
@@ -66,16 +67,18 @@ namespace AskFood.Services
         {
             HttpResponseMessage response = null;
             String result;
+            var status = "";
             var uri = new Uri(URLWebAPI + endpoint);
             var json = JsonConvert.SerializeObject(user);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             using (var Client = new HttpClient())
             {
                 response = await Client.PostAsync(uri, content);
-                //result = await response.Content.ReadAsStringAsync();
-                result = response.ReasonPhrase;
+                result = await response.Content.ReadAsStringAsync();
+                var o = JObject.Parse(result);
+                status = o["error"].ToString();
             }
-            return result;
+            return status;
         }
     }
 }

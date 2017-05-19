@@ -1,15 +1,25 @@
-﻿using AskFood.Model;
+﻿using AskFood.Helpers;
+using AskFood.Model;
 using AskFood.Services;
 using AskFood.View;
 using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AskFood.ViewModel
 {
     public class LoginViewModel: BaseViewModel
     {
-        
+        //Social Login
+        private readonly AzureService _azureService;
+
+        private bool _isBusy;
+
+        public Command LoginCommand { get; }
+
+        // End Social Login
+
         public ObservableCollection<User> Users { get; set; }
 
         public Command Signin { get;}
@@ -33,9 +43,39 @@ namespace AskFood.ViewModel
 
         public LoginViewModel()
         {
+            //Social login
+            Settings.AuthToken = string.Empty;
+            Settings.UserId = string.Empty;
+
+            _azureService = DependencyService.Get<AzureService>();
+            LoginCommand = new Command(async () => await ExecuteLoginCommandAsync());
+            // end social login 
+
             Users = new ObservableCollection<User>();
             Signin = new Command((obj) => SigninCommand());
 
+        }
+
+        private async Task ExecuteLoginCommandAsync()
+        {
+            if (_isBusy || !(await LoginAsync()))
+            {
+                return;
+            }
+            else
+            {
+                await PushAsync<ProductViewModel>();
+            }
+            _isBusy = false;
+        }
+
+        private Task<bool> LoginAsync()
+        {
+            _isBusy = true;
+            if (Settings.IsLoggedIn)
+                return Task.FromResult(true);
+
+            return _azureService.LoginAsync();
         }
 
         async void SigninCommand()
@@ -47,12 +87,12 @@ namespace AskFood.ViewModel
                     
                     
                         User userCredentials = new User();
-                        userCredentials.Name = _username;
-                        userCredentials.Password = _password;
+                        userCredentials.name = _username;
+                        userCredentials.password = _password;
                         
                         var repository = new RestClient();
                         var logged = await repository.LoginUser("user/login", userCredentials);
-                        if(logged == "OK")
+                        if(logged != "True")
                         {
                             //var repository = new RestClient();
                             // var user = await repository.GetUser("user");
