@@ -97,7 +97,7 @@ namespace AskFood.ViewModel
                             //var repository = new RestClient();
                             // var user = await repository.GetUser("user");
                             //var products = await repository.GetProduct("product");
-                            await PushAsync<ProductViewModel>();
+                            await PushModalAsync<ProductViewModel>();
                         }
                             
                         else

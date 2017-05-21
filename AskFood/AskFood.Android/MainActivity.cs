@@ -27,7 +27,8 @@ namespace AskFood.Droid
         protected override void OnCreate(Bundle bundle)
         {
             // Set the current instance of MainActivity.
-            instance = this;
+            instance = this;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -36,6 +37,10 @@ namespace AskFood.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
             LoadApplication(new App());
+
+            var x = typeof(Xamarin.Forms.Themes.DarkThemeResources);
+            x = typeof(Xamarin.Forms.Themes.LightThemeResources);
+            x = typeof(Xamarin.Forms.Themes.Android.UnderlineEffect);
 
             try
             {
@@ -53,7 +58,8 @@ namespace AskFood.Droid
             catch (Exception e)
             {
                 CreateAndShowDialog(e.Message, "Error");
-            }
+            }
+
         }
 
         private void CreateAndShowDialog(String message, String title)
