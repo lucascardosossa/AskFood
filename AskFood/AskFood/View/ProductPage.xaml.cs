@@ -1,4 +1,5 @@
-﻿using AskFood.ViewModel;
+﻿using AskFood.Model;
+using AskFood.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,13 @@ namespace AskFood.View
                 await ViewModel.LoadAsync();
         }
 
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if(e.SelectedItem != null)
+            {
+                ViewModel.ShowItemCommand.Execute(e.SelectedItem);
+            }
+            
+        }
     }
 }

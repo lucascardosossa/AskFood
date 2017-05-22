@@ -84,24 +84,20 @@ namespace AskFood.ViewModel
             
                 try
                 {
-                    
-                    
-                        User userCredentials = new User();
-                        userCredentials.name = _username;
-                        userCredentials.password = _password;
+
+                    User userCredentials = new User();
+                    userCredentials.name = _username;
+                    userCredentials.password = _password;
                         
-                        var repository = new RestClient();
-                        var logged = await repository.LoginUser("user/login", userCredentials);
-                        if(logged != "True")
-                        {
-                            //var repository = new RestClient();
-                            // var user = await repository.GetUser("user");
-                            //var products = await repository.GetProduct("product");
-                            await PushModalAsync<ProductViewModel>();
-                        }
+                    var repository = new RestClient();
+                    var logged = await repository.LoginUser("user/login", userCredentials);
+                    if(logged != "True")
+                    {
+                        await PushModalAsync<ProductViewModel>();
+                    }
                             
-                        else
-                            await App.Current.MainPage.DisplayAlert("Alerta", "Credenciais incorretas.", "ok");
+                    else
+                        await App.Current.MainPage.DisplayAlert("Alerta", "Credenciais incorretas.", "ok");
 
                 }
                 catch (Exception ex)

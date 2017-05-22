@@ -2,6 +2,8 @@
 using AskFood.Services;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using System;
 
 namespace AskFood.ViewModel
 {
@@ -9,9 +11,18 @@ namespace AskFood.ViewModel
     {
         public ObservableCollection<Product> Products { get; }
 
+        public Command<Item> ShowItemCommand { get; }
+
         public ProductViewModel()
         {
             Products = new ObservableCollection<Product>();
+
+            ShowItemCommand = new Command<Item>(ExecuteShowItemCommand);
+        }
+
+        private async void ExecuteShowItemCommand(Item obj)
+        {
+            await PushAsync<ItemViewModel>(obj);
         }
 
         public async Task LoadAsync()
@@ -19,7 +30,6 @@ namespace AskFood.ViewModel
             var repository = new RestClient();
             var products = await repository.GetProduct("product");
 
-            System.Diagnostics.Debug.WriteLine("chegou aqui");
             Products.Clear();
             foreach (var product in products)
             {

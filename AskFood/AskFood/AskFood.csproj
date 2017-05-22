@@ -40,6 +40,7 @@
     </Compile>
     <Compile Include="Authentication\IAuthentication.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Model\Item.cs" />
     <Compile Include="Services\AzureService.cs" />
     <Compile Include="Services\IRestClient.cs" />
     <Compile Include="Model\Product.cs" />
@@ -48,9 +49,13 @@
     <Compile Include="Model\UserDirectory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\RestClient.cs" />
+    <Compile Include="ViewModel\ItemViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="View\ItemPage.xaml.cs">
+      <DependentUpon>ItemPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +139,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\ProductPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\ItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

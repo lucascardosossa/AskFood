@@ -5,7 +5,7 @@
 
     <ScrollView>
         <StackLayout Orientation="Vertical" Padding="5,0,0,0">
-            <ListView ItemsSource="{Binding Products}">
+            <ListView ItemsSource="{Binding Products}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell TextColor="Black" Text="{Binding Name}" Detail="{Binding Description}"/>
