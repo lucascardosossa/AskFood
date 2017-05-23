@@ -93,7 +93,7 @@ namespace AskFood.ViewModel
                     var logged = await repository.LoginUser("user/login", userCredentials);
                     if(logged != "True")
                     {
-                        await PushModalAsync<ProductViewModel>();
+                        await PushAsync<ProductViewModel>();
                     }
                             
                     else

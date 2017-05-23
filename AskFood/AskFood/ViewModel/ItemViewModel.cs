@@ -23,15 +23,31 @@ namespace AskFood.ViewModel
 
         public async Task LoadAsync()
         {
+            Exception Error = null;
             var repository = new RestClient();
-            
-            var items = await repository.GetItemsByProduct("item/byProduct",_product);
-
-            Items.Clear();
-            foreach (var i in items)
+            try
             {
-                Items.Add(i);
+                var items = await repository.GetItemsByProduct($"item/byProduct/{_product.Id}");
+                
+                Items.Clear();
+                foreach (var i in items)
+                {
+                    Items.Add(i);
+                }
             }
+            catch (Exception ex)
+            {
+                Error = ex;
+            }
+            finally
+            {
+
+                if (Error != null)
+                {
+                    await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Error!", Error.Message, "OK");
+                }
+            }
+
         }
     }
 }

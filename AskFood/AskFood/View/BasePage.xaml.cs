@@ -1,5 +1,4 @@
-﻿using AskFood.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace AskFood.View
 {
-    public partial class MainPage 
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class BasePage : ContentPage
     {
-        public MainPage()
+        public BasePage()
         {
             InitializeComponent();
-            this.BindingContext = new UserViewModel();
         }
     }
 }

@@ -63,18 +63,15 @@ namespace AskFood.Services
             
         }
 
-        public async Task<List<Item>> GetItemsByProduct(string endpoint, Product product)
+        public async Task<List<Item>> GetItemsByProduct(string endpoint)
         {
             List<Item> Items;
-            HttpResponseMessage response = null;
-
             var uri = new Uri(URLWebAPI + endpoint);
-            var json = JsonConvert.SerializeObject(product);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             using (var Client = new HttpClient())
             {
-                response = await Client.PostAsync(uri,content);
+                Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = await Client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();

@@ -11,13 +11,14 @@ using Xamarin.Forms.Xaml;
 
 namespace AskFood.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class ProductPage : ContentPage
     {
         private ProductViewModel ViewModel => BindingContext as ProductViewModel;
         public ProductPage()
         {
             InitializeComponent();
+
         }
 
         protected override async void OnAppearing()
@@ -32,7 +33,7 @@ namespace AskFood.View
         {
             if(e.SelectedItem != null)
             {
-                ViewModel.ShowItemCommand.Execute(e.SelectedItem);
+                ViewModel.ShowItemCommand((Product)e.SelectedItem);
             }
             
         }

@@ -17,6 +17,12 @@ namespace AskFood.Model
         {
 
         }
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged  = delegate { };
 
@@ -89,6 +95,12 @@ namespace AskFood.Model
 
             await App.Current.MainPage.Navigation.PushModalAsync(page);
         }
+
+        public virtual Task LoadAsync()
+        {
+            return Task.FromResult(0);
+        }
+
 
     }
 }

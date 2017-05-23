@@ -10,13 +10,21 @@ using Xamarin.Forms.Xaml;
 
 namespace AskFood.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class ItemPage : ContentPage
     {
         private ItemViewModel ViewModel => BindingContext as ItemViewModel;
         public ItemPage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (ViewModel != null)
+                await ViewModel.LoadAsync();
         }
     }
 }
